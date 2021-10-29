@@ -1,6 +1,6 @@
 [package]
 name = "tomato"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Junichi Kakisako <kilo.sw@gmail.com>"]
 description = "Command line pomodoro timer."
 readme = "README.md"
