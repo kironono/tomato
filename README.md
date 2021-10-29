@@ -2,9 +2,11 @@
 
 [![Continuous integration](https://github.com/kironono/tomato/actions/workflows/ci.yml/badge.svg)](https://github.com/kironono/tomato/actions/workflows/ci.yml)
 
-command line Pomodoro timer.
+!!This product is incomplete!!
 
-## Install
+Command line pomodoro timer.
+
+## Installation
 
 cargo install:
 
@@ -14,4 +16,6 @@ cargo install tomato
 
 ## License
 
-`tomato` is distributed MIT license.
+`tomato` is distributed under the terms of the MIT license.
+
+See the [LICENSE](LICENSE) files in this repository for more information.
