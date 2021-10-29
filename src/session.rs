@@ -70,7 +70,7 @@ impl Session {
 }
 
 fn process_state(duration: u64, state_msg: &str) {
-    let duration_second = duration;
+    let duration_second = duration * 60;
 
     let progress = ProgressBar::new(duration_second);
 
