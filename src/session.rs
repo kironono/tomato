@@ -88,20 +88,19 @@ mod tests {
     use super::*;
 
     #[test]
-    fn next_state_working_after_long_break() {
+    fn next_state_none_should_be_working() {
         let config = TomatoConfig::new(25, 5, 15);
-        let mut session = Session {
+        let session = Session {
             work_count: 0,
-            state: State::Working,
+            state: State::None,
             config,
         };
-        session.work_count = 4;
         let next = session.next_state();
-        assert_eq!(next, State::LongBreak);
+        assert_eq!(next, State::Working);
     }
 
     #[test]
-    fn next_state_working_after_short_break() {
+    fn next_to_working_should_be_short_break() {
         let config = TomatoConfig::new(25, 5, 15);
         let session = Session {
             work_count: 0,
@@ -110,5 +109,41 @@ mod tests {
         };
         let next = session.next_state();
         assert_eq!(next, State::ShortBreak);
+    }
+
+    #[test]
+    fn next_to_repeating_working_should_be_long_break() {
+        let config = TomatoConfig::new(25, 5, 15);
+        let session = Session {
+            work_count: 4,
+            state: State::Working,
+            config,
+        };
+        let next = session.next_state();
+        assert_eq!(next, State::LongBreak);
+    }
+
+    #[test]
+    fn next_state_short_break_should_be_working() {
+        let config = TomatoConfig::new(25, 5, 15);
+        let session = Session {
+            work_count: 0,
+            state: State::ShortBreak,
+            config,
+        };
+        let next = session.next_state();
+        assert_eq!(next, State::Working);
+    }
+
+    #[test]
+    fn next_state_long_break_should_be_working() {
+        let config = TomatoConfig::new(25, 5, 15);
+        let session = Session {
+            work_count: 0,
+            state: State::LongBreak,
+            config,
+        };
+        let next = session.next_state();
+        assert_eq!(next, State::Working);
     }
 }
