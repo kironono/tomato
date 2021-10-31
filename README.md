@@ -1,8 +1,8 @@
 # `tomato`
 
-[![Continuous integration](https://github.com/kironono/tomato/actions/workflows/ci.yml/badge.svg)](https://github.com/kironono/tomato/actions/workflows/ci.yml)
-
-!!This product is incomplete!!
+[![build](https://img.shields.io/github/workflow/status/kironono/tomato/Continuous%20integration)](https://github.com/kironono/tomato/actions/workflows/ci.yml)
+[![version](https://img.shields.io/crates/v/tomato)](https://crates.io/crates/tomato)
+[![license](https://img.shields.io/crates/l/tomato)](https://crates.io/crates/tomato)
 
 Command line pomodoro timer.
 
