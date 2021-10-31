@@ -1,6 +1,7 @@
 use console::Term;
 use core::time;
 use indicatif::{ProgressBar, ProgressStyle};
+use notify_rust::Notification;
 use std::thread;
 
 use crate::config::TomatoConfig;
@@ -55,18 +56,30 @@ impl Session {
             match self.state {
                 State::None => {}
                 State::Working => {
-                    process_state(self.config.work_time, "Working..");
+                    notify(&format!("🍅 Start work time #{}", self.work_count + 1));
+                    process_state(self.config.work_time, "Working...");
                     self.work_count += 1;
                 }
-
-                State::LongBreak => process_state(self.config.long_break_time, "Long Breaking.."),
                 State::ShortBreak => {
-                    process_state(self.config.short_break_time, "Short Breaking..")
+                    notify("🍅 Start short break time");
+                    process_state(self.config.short_break_time, "Short Breaking...")
+                }
+                State::LongBreak => {
+                    notify("🍅 Start long break time");
+                    process_state(self.config.long_break_time, "Long Breaking...");
                 }
             }
             self.next();
         }
     }
+}
+
+fn notify(message: &str) {
+    Notification::new()
+        .body(message)
+        .sound_name("Ping")
+        .show()
+        .unwrap();
 }
 
 fn process_state(duration: u64, state_msg: &str) {
