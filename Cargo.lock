@@ -52,7 +52,9 @@ dependencies = [
  "encode_unicode",
  "libc",
  "once_cell",
+ "regex",
  "terminal_size",
+ "unicode-width",
  "winapi",
 ]
 
@@ -152,6 +154,7 @@ name = "tomato"
 version = "0.1.1"
 dependencies = [
  "clap",
+ "console",
  "indicatif",
 ]
 

@@ -1,7 +1,7 @@
+use console::Term;
 use core::time;
+use indicatif::{ProgressBar, ProgressStyle};
 use std::thread;
-
-use indicatif::ProgressBar;
 
 use crate::config::TomatoConfig;
 
@@ -70,11 +70,19 @@ impl Session {
 }
 
 fn process_state(duration: u64, state_msg: &str) {
+    let term = Term::stdout();
     let duration_second = duration * 60;
 
-    let progress = ProgressBar::new(duration_second);
+    term.clear_screen().unwrap();
+    term.write_line(&format!("Tomato: {}", state_msg)).unwrap();
 
-    println!("{}", state_msg);
+    let progress = ProgressBar::new(duration_second);
+    progress.set_style(
+        ProgressStyle::default_bar()
+            .template("{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}]"),
+    );
+    progress.inc(0);
+
     for _i in 0..duration_second {
         thread::sleep(time::Duration::from_secs(1));
         progress.inc(1);
